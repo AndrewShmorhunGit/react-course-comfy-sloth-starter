@@ -13,25 +13,33 @@ import {
   PrivatRoute,
 } from "./pages";
 
-// const Button = styled.button`
-//   background: green;
-//   color: white;
-//   margin: 5% 5%;
-// `;
-
-// const Container = styled.div`
-//   background: green;
-//   color: red;
-
-//   .hero {
-//     color: orange;
-//     font-size: 4rem;
-//     text-transform: uppercase;
-//   }
-// `;
-
 function App() {
-  return <div>comfy sloth starter</div>;
+  return (
+    <Router>
+      <Navbar /> <Sidebar />
+      <Switch>
+        <Route exact path="/">
+          <HomePage />
+        </Route>
+        <Route exact path="/about">
+          <AboutPage />
+        </Route>
+        <Route exact path="/cart">
+          <CartPage />
+        </Route>
+        <Route exact path="/products">
+          <ProductsPage />
+        </Route>
+        <Route exact path="/products/:id" children={<SingleProductPage />} />
+
+        <Route exact path="/checkout">
+          <CheckoutPage />
+        </Route>
+        <Route exact path="*" children={<ErrorPage />} />
+      </Switch>
+      <Footer />
+    </Router>
+  );
 }
 
 export default App;
