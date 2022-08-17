@@ -2,6 +2,16 @@ import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Navbar, Sidebar, Footer } from "./components";
 import styled from "styled-components";
+import {
+  HomePage,
+  SingleProductPage,
+  CartPage,
+  CheckoutPage,
+  ErrorPage,
+  AboutPage,
+  ProductsPage,
+  PrivatRoute,
+} from "./pages";
 
 // const Button = styled.button`
 //   background: green;
@@ -21,20 +31,7 @@ import styled from "styled-components";
 // `;
 
 function App() {
-  return (
-    <div>
-      comfy sloth starter
-      <Button>Click me</Button>
-      <Container>
-        <div>
-          <h3>Hi!</h3>
-        </div>
-        <div className="hero">
-          <p>Hero text</p>
-        </div>
-      </Container>
-    </div>
-  );
+  return <div>comfy sloth starter</div>;
 }
 
 export default App;
