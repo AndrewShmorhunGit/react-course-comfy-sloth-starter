@@ -13,7 +13,13 @@ import {
   GET_SINGLE_PRODUCT_ERROR,
 } from "../actions";
 
-const initialState = { isSidebarOpen: false };
+const initialState = {
+  isSidebarOpen: false,
+  products_loading: false,
+  products_error: false,
+  products: [],
+  featued_products: [],
+};
 
 const ProductsContext = React.createContext();
 
@@ -28,12 +34,21 @@ export const ProductsProvider = ({ children }) => {
     dispatch({ type: SIDEBAR_CLOSE });
   };
 
-  useEffect(() => {
-    openSidebar();
-  }, []);
+  const fetchProducts = async (url) => {
+    dispatch({ type: GET_PRODUCTS_BEGIN });
+    try {
+      const response = await axios(url);
+      const products = response.data;
+      dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
+      console.log(products);
+    } catch (error) {
+      dispatch({ type: GET_PRODUCTS_ERROR });
+      console.log(error);
+    }
+  };
 
   useEffect(() => {
-    closeSidebar();
+    fetchProducts(url);
   }, []);
 
   return (
