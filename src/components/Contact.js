@@ -13,14 +13,16 @@ const Contact = () => {
             Sit asperiores illo alias dolorum doloribus.
           </p>
           <form
-            action="submitt"
+            id="fs-frm"
             className="contact-form"
-            onSubmit={console.log(1)}
+            action="https://formspree.io/f/mlevekjg"
+            method="POST"
           >
             <input
               type="email"
               className="form-input"
               placeholder="enter email"
+              name="_replyto"
             />
             <button type="submit" className="submit-btn">
               subscribe
