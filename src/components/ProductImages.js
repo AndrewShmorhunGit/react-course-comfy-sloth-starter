@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import Loading from "./Loading";
+// import Loading from "./Loading";
 
 const ProductImages = ({ images = [{ url: "" }] }) => {
-  console.log(images);
   const [main, setMain] = useState(images[0]);
   // const imgMain = setTimeout(() => {
   //   return images[0];
