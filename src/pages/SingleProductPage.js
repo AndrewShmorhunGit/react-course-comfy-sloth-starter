@@ -24,7 +24,7 @@ const SingleProductPage = () => {
 
   const { id } = useParams();
   const history = useHistory();
-  console.log(singleProduct);
+
   useEffect(() => {
     error &&
       setTimeout(() => {
@@ -55,32 +55,35 @@ const SingleProductPage = () => {
     company,
     images,
   } = singleProduct;
+
   return (
     <Wrapper>
       <PageHero title={`products / ${name}`} />
-      <div className="section section-center page"></div>
-      <Link to="/products" className="btn">
-        back to products
-      </Link>
-      <div className="product-center">
-        <ProductImages key={id} {...singleProduct} />
-        <section className="content">
-          <h2>{name}</h2>
-          <Stars />
-          <h5 className="price">{formatPrice(price)}</h5>
-          <p className="desc">{description}</p>
-          <p className="info">
-            <span>Available : {stock ? "In stock" : "Out of stuck"}</span>
-          </p>
-          <p className="info">
-            <span>SKU : {sku}</span>
-          </p>
-          <p className="info">
-            <span>Brand : {company}</span>
-          </p>
-          <hr />
-          {stock && <AddToCart />}
-        </section>
+      <div className="section section-center page">
+        <Link to="/products" className="btn">
+          back to products
+        </Link>
+
+        <div className="product-center">
+          <ProductImages images={images} />
+          <section className="content">
+            <h2>{name}</h2>
+            <Stars reviews={reviews} sters={stars} />
+            <h5 className="price">{formatPrice(price)}</h5>
+            <p className="desc">{description}</p>
+            <p className="info">
+              <span>Available :</span> {stock ? "In stock" : "Out of stuck"}
+            </p>
+            <p className="info">
+              <span>SKU :</span> {sku}
+            </p>
+            <p className="info">
+              <span>Brand :</span> {company}
+            </p>
+            <hr />
+            {stock && <AddToCart />}
+          </section>
+        </div>
       </div>
     </Wrapper>
   );

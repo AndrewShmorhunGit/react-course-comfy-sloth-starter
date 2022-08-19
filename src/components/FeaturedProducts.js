@@ -34,9 +34,13 @@ const FeaturedProducts = () => {
           return <Product key={product.id} {...product} />;
         })}
       </div>
-      <button className="btn" onClick={toggleFeatureProducts}>
-        {show ? "show more" : "show less"}
-      </button>
+      <div className="buttons">
+        <button className="btn" onClick={toggleFeatureProducts}>
+          {show ? "show more" : "show less"}
+        </button>
+        <br />
+        <button className="btn">all products</button>
+      </div>
     </Wrapper>
   );
 };
@@ -51,11 +55,19 @@ const Wrapper = styled.section`
       height: 225px;
     }
   }
+
+  .buttons {
+    display: flex;
+    flex-direction: inline;
+    margin: 0 40rem 0 40rem;
+  }
+
   .btn {
     display: block;
     width: 148px;
     margin: 0 auto;
     text-align: center;
+    padding: 0 auto;
   }
   @media (min-width: 576px) {
     .featured {
