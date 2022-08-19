@@ -40,6 +40,26 @@ const products_reducer = (state, action) => {
       show: !state.show,
     };
   }
+  if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
+    return { ...state, singleProducts_loading: true, products_error: false };
+  }
+  if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
+    // const featured_products = action.payload.filter(
+    //   (product) => product.featured && product
+    // );
+    return {
+      ...state,
+      singleProducts_loading: false,
+      singleProduct: action.payload,
+    };
+  }
+  if (action.type === GET_SINGLE_PRODUCT_ERROR) {
+    return {
+      ...state,
+      singleProducts_loading: false,
+      singlePproducts_error: true,
+    };
+  }
   // return state;
   throw new Error(`No Matching "${action.type}" - action type`);
 };

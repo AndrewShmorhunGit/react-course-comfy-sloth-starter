@@ -1,7 +1,7 @@
 import axios from "axios";
 import React, { useContext, useEffect, useReducer } from "react";
 import reducer from "../reducers/products_reducer";
-import { products_url as url } from "../utils/constants";
+import { products_url } from "../utils/constants";
 import {
   SIDEBAR_OPEN,
   SIDEBAR_CLOSE,
@@ -20,6 +20,9 @@ const initialState = {
   products: [],
   featured_products: [],
   show: true,
+  single_product_loading: false,
+  single_product_error: false,
+  singleProduct: {},
 };
 
 const ProductsContext = React.createContext();
@@ -38,7 +41,7 @@ export const ProductsProvider = ({ children }) => {
   const fetchProducts = async (url) => {
     dispatch({ type: GET_PRODUCTS_BEGIN });
     try {
-      const response = await axios(url);
+      const response = await axios.get(url);
       const products = response.data;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
     } catch (error) {
@@ -47,17 +50,34 @@ export const ProductsProvider = ({ children }) => {
     }
   };
 
+  const fetchSingleProduct = async (url) => {
+    dispatch({ type: GET_SINGLE_PRODUCT_BEGIN });
+    try {
+      const response = await axios(url);
+      const singleProduct = response.data;
+      dispatch({ type: GET_SINGLE_PRODUCT_SUCCESS, payload: singleProduct });
+    } catch (error) {
+      dispatch({ type: GET_SINGLE_PRODUCT_ERROR });
+    }
+  };
+
   function toggleFeatureProducts() {
     dispatch({ type: "TOGGLE_FEATURE_PRODUCTS" });
   }
 
   useEffect(() => {
-    fetchProducts(url);
+    fetchProducts(products_url);
   }, []);
 
   return (
     <ProductsContext.Provider
-      value={{ ...state, openSidebar, closeSidebar, toggleFeatureProducts }}
+      value={{
+        ...state,
+        openSidebar,
+        closeSidebar,
+        toggleFeatureProducts,
+        fetchSingleProduct,
+      }}
     >
       {children}
     </ProductsContext.Provider>
