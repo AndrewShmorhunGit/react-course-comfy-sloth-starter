@@ -1,29 +1,31 @@
 import React, { useState } from "react";
+import { useProductsContext } from "../context/products_context";
 import styled from "styled-components";
 // import Loading from "./Loading";
+// import { load } from "dotenv/types";
 
-const ProductImages = ({ images = [{ url: "" }] }) => {
-  const [main, setMain] = useState(images[0]);
-  // const imgMain = setTimeout(() => {
-  //   return images[0];
-  // }, 1000);
+const ProductImages = () => {
+  const { singleProductImages } = useProductsContext();
+  // const [main, setMain] = useState(singleProductImages[0]);
+
+  console.log(singleProductImages);
 
   return (
     <Wrapper>
-      <img src={main.url} alt="main image" className="mai   n" />
+      {/* <img src={main.url} alt="main image" className="main" />
       <div className="gallery">
-        {images.map((image, index) => {
+        {singleProductImages.map((image, index) => {
           return (
             <img
               key={index}
               src={image.url}
               alt={image.filename}
-              onClick={() => setMain(images[index])}
-              className={`${image.url === main.url ? "active" : ""}`}
+              // onClick={() => setMain(singleProductImages[index])}
+              // className={`${image.url === main.url ? "active" : ""}`}
             />
           );
         })}
-      </div>
+      </div> */}
     </Wrapper>
   );
 };

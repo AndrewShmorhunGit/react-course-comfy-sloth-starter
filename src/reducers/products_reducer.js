@@ -47,10 +47,12 @@ const products_reducer = (state, action) => {
     // const featured_products = action.payload.filter(
     //   (product) => product.featured && product
     // );
+
     return {
       ...state,
       singleProducts_loading: false,
       singleProduct: action.payload,
+      singleProductImages: action.payload.images,
     };
   }
   if (action.type === GET_SINGLE_PRODUCT_ERROR) {
