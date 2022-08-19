@@ -18,7 +18,8 @@ const initialState = {
   products_loading: false,
   products_error: false,
   products: [],
-  featued_products: [],
+  featured_products: [],
+  show: true,
 };
 
 const ProductsContext = React.createContext();
@@ -40,19 +41,24 @@ export const ProductsProvider = ({ children }) => {
       const response = await axios(url);
       const products = response.data;
       dispatch({ type: GET_PRODUCTS_SUCCESS, payload: products });
-      console.log(products);
     } catch (error) {
       dispatch({ type: GET_PRODUCTS_ERROR });
       console.log(error);
     }
   };
 
+  function toggleFeatureProducts() {
+    dispatch({ type: "TOGGLE_FEATURE_PRODUCTS" });
+  }
+
   useEffect(() => {
     fetchProducts(url);
   }, []);
 
   return (
-    <ProductsContext.Provider value={{ ...state, openSidebar, closeSidebar }}>
+    <ProductsContext.Provider
+      value={{ ...state, openSidebar, closeSidebar, toggleFeatureProducts }}
+    >
       {children}
     </ProductsContext.Provider>
   );

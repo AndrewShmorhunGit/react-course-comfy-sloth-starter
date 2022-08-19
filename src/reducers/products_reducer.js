@@ -21,18 +21,24 @@ const products_reducer = (state, action) => {
     return { ...state, products_loading: true };
   }
   if (action.type === GET_PRODUCTS_SUCCESS) {
-    const featued_products = action.payload.filter(
+    const featured_products = action.payload.filter(
       (product) => product.featured && product
     );
     return {
       ...state,
       products_loading: false,
       products: action.payload,
-      featued_products,
+      featured_products,
     };
   }
   if (action.type === GET_PRODUCTS_ERROR) {
     return { ...state, products_loading: false, products_error: true };
+  }
+  if (action.type === "TOGGLE_FEATURE_PRODUCTS") {
+    return {
+      ...state,
+      show: !state.show,
+    };
   }
   // return state;
   throw new Error(`No Matching "${action.type}" - action type`);
