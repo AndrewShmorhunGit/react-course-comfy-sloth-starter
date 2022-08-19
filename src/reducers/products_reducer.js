@@ -41,7 +41,7 @@ const products_reducer = (state, action) => {
     };
   }
   if (action.type === GET_SINGLE_PRODUCT_BEGIN) {
-    return { ...state, singleProducts_loading: true, products_error: false };
+    return { ...state, singleProduct_loading: true, products_error: false };
   }
   if (action.type === GET_SINGLE_PRODUCT_SUCCESS) {
     // const featured_products = action.payload.filter(
@@ -50,7 +50,7 @@ const products_reducer = (state, action) => {
 
     return {
       ...state,
-      singleProducts_loading: false,
+      singleProduct_loading: false,
       singleProduct: action.payload,
       singleProductImages: action.payload.images,
     };
@@ -58,8 +58,8 @@ const products_reducer = (state, action) => {
   if (action.type === GET_SINGLE_PRODUCT_ERROR) {
     return {
       ...state,
-      singleProducts_loading: false,
-      singlePproducts_error: true,
+      singleProduct_loading: false,
+      singlePproduct_error: true,
     };
   }
   // return state;

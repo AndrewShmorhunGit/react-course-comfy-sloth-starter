@@ -8,6 +8,27 @@ import AmountButtons from "./AmountButtons";
 const AddToCart = ({ product }) => {
   const { id, stock, colors } = product;
   const [mainColor, setMainColor] = useState(colors[0]);
+  const [amount, setAmount] = useState(1);
+
+  const inc = () => {
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount + 1;
+      if (tempAmount > stock) {
+        tempAmount = stock;
+      }
+      return tempAmount;
+    });
+  };
+
+  const dec = () => {
+    setAmount((oldAmount) => {
+      let tempAmount = oldAmount - 1;
+      if (tempAmount < 1) {
+        tempAmount = 1;
+      }
+      return tempAmount;
+    });
+  };
 
   return (
     <Wrapper>
@@ -29,7 +50,12 @@ const AddToCart = ({ product }) => {
             );
           })}
         </div>
-        <div className="btn-container"></div>
+      </div>
+      <div className="btn-container">
+        <AmountButtons amount={amount} inc={inc} dec={dec} />
+        <Link to="/cart" className="btn">
+          add to cart
+        </Link>
       </div>
     </Wrapper>
   );
@@ -77,6 +103,7 @@ const Wrapper = styled.section`
 
   .btn {
     margin-top: 1rem;
+    padding: 0.5rem 1.1rem 0.5rem 1.1rem;
     width: 140px;
   }
 `;
