@@ -5,7 +5,7 @@ import CartPage from "./CartPage";
 import CheckoutPage from "./CheckoutPage";
 import ErrorPage from "./ErrorPage";
 import PrivatRoute from "./PrivateRoute";
-import ProductsPage from "./ProductsPage.jsx";
+import ProductsPage from "./ProductsPage";
 import SingleProductPage from "./SingleProductPage";
 
 export {
