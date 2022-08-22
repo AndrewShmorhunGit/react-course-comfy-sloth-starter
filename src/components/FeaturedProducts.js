@@ -39,7 +39,10 @@ const FeaturedProducts = () => {
           {show ? "show more" : "show less"}
         </button>
         <br />
-        <button className="btn">all products</button>
+
+        <Link to="/products">
+          <button className="btn">all products</button>
+        </Link>
       </div>
     </Wrapper>
   );
