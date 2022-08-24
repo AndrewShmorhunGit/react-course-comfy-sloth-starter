@@ -18,15 +18,17 @@ ReactDOM.render(
     redirectUri={window.location.origin}
     cacheLocation="localstorage"
   >
-    <React.StrictMode>
-      <ProductsProvider>
-        <FilterProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </FilterProvider>
-      </ProductsProvider>
-    </React.StrictMode>
+    <UserProvider>
+      <React.StrictMode>
+        <ProductsProvider>
+          <FilterProvider>
+            <CartProvider>
+              <App />
+            </CartProvider>
+          </FilterProvider>
+        </ProductsProvider>
+      </React.StrictMode>
+    </UserProvider>
   </Auth0Provider>,
   document.getElementById("root")
 );
