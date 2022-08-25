@@ -1,4 +1,3 @@
-import React, { useEffect, useState } from "react";
 import { useProductsContext } from "../context/products_context";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
@@ -12,7 +11,7 @@ const FeaturedProducts = () => {
     products_error: error,
     featured_products: featured,
     toggleFeatureProducts,
-    show: show,
+    show,
   } = useProductsContext();
 
   if (loading) {
