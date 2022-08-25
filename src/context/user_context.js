@@ -9,7 +9,11 @@ export const UserProvider = ({ children }) => {
   const [myUser, setMyuUser] = useState(null);
 
   useEffect(() => {
-    console.log(user);
+    if (isAuthenticated) {
+      setMyuUser(user);
+    } else {
+      setMyuUser(false);
+    }
   }, [isAuthenticated]);
 
   return (
